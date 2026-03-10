@@ -15,8 +15,28 @@ export const initPagination = ({pages, fromRow, toRow, totalRows}, createPage) =
         let page = state.page || 1;
 
         // #2.6 — обработка клика по странице
-        if (action?.name === 'page') {
+          if (action?.name === 'page') {
             page = parseInt(action.value);
+        }
+
+        if (action?.name === 'next') {
+            page += 1;
+        }
+
+        if (action?.name === 'prev') {
+            page -= 1;
+        }
+
+        if (action?.name === 'first') {
+            page = 1;
+        }
+
+        if (action?.name === 'last') {
+            page = totalPages;
+        }
+
+        if (page < 1) {
+            page = 1;
         }
 
         if (page > totalPages) {
