@@ -68,6 +68,7 @@ const applyPagination = initPagination(
         const input = el.querySelector('input');
         const label = el.querySelector('span');
 
+        el.dataset.name = 'page';
         input.value = page;
         input.checked = isCurrent;
         label.textContent = page;
