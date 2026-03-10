@@ -24,7 +24,7 @@ export const initPagination = ({pages, fromRow, toRow, totalRows}, createPage) =
         }
 
         // #2.4 — получаем список страниц
-        const visiblePages = getPages(page, totalPages);
+        const visiblePages = getPages(page, totalPages, 10);
 
         pages.replaceChildren(
             ...visiblePages.map((pageNumber) =>
