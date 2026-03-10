@@ -1,22 +1,7 @@
 import {createComparison, defaultRules} from "../lib/compare.js";
 
 // @todo: #4.3 — настроить компаратор
-const compare = createComparison(
-    ['skipEmptyTargetValues', 'stringIncludes', 'exactEquality'],
-    [
-        (key, sourceValue, targetValue, source) => {
-            if (key === 'totalFrom') {
-                return {result: Number(source.total) >= Number(targetValue)};
-            }
-
-            if (key === 'totalTo') {
-                return {result: Number(source.total) <= Number(targetValue)};
-            }
-
-            return {continue: true};
-        }
-    ]
-);
+const compare = createComparison(defaultRules);
 
 
 export function initFiltering(elements, indexes) {
@@ -47,6 +32,13 @@ export function initFiltering(elements, indexes) {
 }
 
         // @todo: #4.5 — отфильтровать данные используя компаратор
-        return data.filter((row) => compare(row, state));
-    }
+        return data.filter((row) =>
+            compare(row, {
+                date: state.date,
+                customer: state.customer,
+                seller: state.seller,
+                total: [state.totalFrom, state.totalTo]
+            })
+        );
+    };
 }

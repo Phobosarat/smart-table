@@ -17,21 +17,13 @@ export const initPagination = ({pages, fromRow, toRow, totalRows}, createPage) =
         // #2.6 — обработка клика по странице
           if (action?.name === 'page') {
             page = parseInt(action.value);
-        }
-
-        if (action?.name === 'next') {
+        } else if (action?.name === 'next') {
             page += 1;
-        }
-
-        if (action?.name === 'prev') {
+        } else if (action?.name === 'prev') {
             page -= 1;
-        }
-
-        if (action?.name === 'first') {
+        } else if (action?.name === 'first') {
             page = 1;
-        }
-
-        if (action?.name === 'last') {
+        } else if (action?.name === 'last') {
             page = totalPages;
         }
 
